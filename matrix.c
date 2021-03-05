@@ -21,3 +21,13 @@ int Load_Matrix(FILE* input, matrix_t* m)
 {
 
 }
+
+int Display_Matrix(matrix_t* m)
+{
+    for (int i = 0; i < m->rows; i++)
+    {
+        for (int j = 0; j < m->collumns; j++)
+            printf(" %d", m->values[i * m->collumns + j]);
+        printf("/n");
+    }
+}
