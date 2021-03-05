@@ -2,6 +2,7 @@
 #define _MATRIX_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct
 {
@@ -10,8 +11,8 @@ typedef struct
     int* values;
 } matrix_t;
 
-matrix_t Make_Matrix(int rows, int collumns);
-int Load_Matrix(FILE* input, matrix_t* m); //Czyta z pliku input i zapisuje do macierzy m
+matrix_t* Make_Matrix(int rows, int collumns);
+int Load_Matrix(FILE* input, matrix_t* m);  //Czyta z pliku input i zapisuje do macierzy m
 int Diplay_Matrix();
 int Neighbour_counter(matrix_t* m, matrix_t* nm);
 int Rule_applier(matrix_t* m, matrix_t* nm);
