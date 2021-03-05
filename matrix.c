@@ -19,14 +19,28 @@ matrix_t* Make_Matrix(int rows, int collumns)
     return matrix;
 }
 
-int Load_Matrix(FILE* input, matrix_t* m)
-{
-  int *tmp=m->values;
-  int size=m->rows * m->collumns;
-  for (int i = 0; i < size; i++)
-    fscanf(input, "%d", &tmp[i]);
+matrix_t* Load_Matrix(FILE* input){
+  matrix_t* m;
+  int size,a,b;
 
-  return 0;
+  fscanf(input,"%d %d",&a,&b);
+  m = Make_Matrix(a,b);
+  size = a * b;
+
+  for (int i = 0; i < size; i++)
+    if(fscanf(input, "%d", &m->values[i]) != 1)
+    return NULL;
+
+  return m;
+}
+
+void Write_Matrix(FILE* output, matrix_t* m){
+fprintf(output,"%d %d\n", m->rows,m->collumns);
+for(int i = 0; i < m->rows; i++){
+    for(int j = 0; j < m->collumns; j++)
+    fprintf(output,"%d ", m->values[i * m->rows + m->collumns]);
+    fprintf(output,"\n");
+}
 }
 
 int Display_Matrix(matrix_t* m)

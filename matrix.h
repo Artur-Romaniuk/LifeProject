@@ -12,7 +12,8 @@ typedef struct
 } matrix_t;
 
 matrix_t* Make_Matrix(int rows, int collumns);
-int Load_Matrix(FILE* input, matrix_t* m);  //Czyta z pliku input i zapisuje do macierzy m
+matrix_t* Load_Matrix(FILE* input);  //Czyta z pliku input i zapisuje do macierzy m
+void Write_Matrix(FILE* output, matrix_t* m);
 int Display_Matrix(matrix_t* m);
 int Neighbour_counter(matrix_t* m, matrix_t* nm);
 int Rule_applier(matrix_t* m, matrix_t* nm);
