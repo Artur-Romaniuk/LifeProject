@@ -21,7 +21,12 @@ matrix_t* Make_Matrix(int rows, int collumns)
 
 int Load_Matrix(FILE* input, matrix_t* m)
 {
+  int *tmp=m->values;
+  int size=m->rows * m->collumns;
+  for (int i = 0; i < size; i++)
+    fscanf(input, "%d", &tmp[i]);
 
+  return 0;
 }
 
 int Display_Matrix(matrix_t* m)
