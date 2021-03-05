@@ -7,11 +7,11 @@ typedef struct
 {
     int rows;
     int collumns;
-    int* value;
+    int* values;
 } matrix_t;
 
-
-int Load_Matrix(FILE* input, matrix_t* m);
+matrix_t Make_Matrix(int rows, int collumns);
+int Load_Matrix(FILE* input, matrix_t* m); //Czyta z pliku input i zapisuje do macierzy m
 int Diplay_Matrix();
 int Neighbour_counter(matrix_t* m, matrix_t* nm);
 int Rule_applier(matrix_t* m, matrix_t* nm);
