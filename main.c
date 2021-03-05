@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include "gameLogic.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +14,9 @@ int main(int argc, char** argv)
     matrix_t* N_CS_Matrix = Make_Matrix(rows, collumns); //Neighbour curren state matrix
     if (CS_Matrix == NULL || N_CS_Matrix == NULL)
         return 1;
-    
-    
+    Display_Matrix(CS_Matrix);
+    Display_Matrix(N_CS_Matrix);
+
+
     return 0;
 }

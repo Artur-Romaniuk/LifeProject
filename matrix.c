@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include <string.h>
 
 
 matrix_t* Make_Matrix(int rows, int collumns)
@@ -14,6 +15,7 @@ matrix_t* Make_Matrix(int rows, int collumns)
     }
     matrix->rows = rows;
     matrix->collumns = collumns;
+    memset(matrix->values, 0, (rows * collumns * sizeof * matrix->values));
     return matrix;
 }
 
@@ -28,6 +30,7 @@ int Display_Matrix(matrix_t* m)
     {
         for (int j = 0; j < m->collumns; j++)
             printf(" %d", m->values[i * m->collumns + j]);
-        printf("/n");
+        printf("\n");
     }
+    return 0;
 }
