@@ -10,7 +10,7 @@ int Neighbour_counter(matrix_t* m, matrix_t* n)
     }
     if (m->values[m->collumns - 1] == 1) //upper right corner
     {
-        n->values[m->collumns - 1]++;
+        n->values[m->collumns - 2]++;
         n->values[2 * m->collumns - 1]++;
         n->values[2 * m->collumns - 2]++;
     }
@@ -27,9 +27,71 @@ int Neighbour_counter(matrix_t* m, matrix_t* n)
         n->values[(m->rows - 1) * m->collumns - 2]++;
     }
 
-    //for (int i = 1; i < m->collumns - 1; i++)
-   // {
-   //     if()
-   // }
+    for (int i = 1; i < m->collumns - 1; i++)  //top row
+    {
+        if (m->values[i] == 1)
+        {
+            n->values[i - 1]++;
+            n->values[i + 1]++;
+            n->values[i + m->collumns]++;
+            n->values[i + m->collumns + 1]++;
+            n->values[i + m->collumns - 1]++;
+        }
+    }
+    for (int i = ((m->rows - 1) * m->collumns) + 1; i < m->collumns * m->rows - 1; i++) //bottom row
+    {
+        if (m->values[i] == 1)
+        {
+            n->values[i - 1]++;
+            n->values[i + 1]++;
+            n->values[i - m->collumns]++;
+            n->values[i - m->collumns + 1]++;
+            n->values[i - m->collumns - 1]++;
+        }
+    }
 
+    for (int i = m->collumns; i < (m->rows - 1) * m->collumns; i += m->collumns) //left collumn
+    {
+        if (m->values[i] == 1)
+        {
+            n->values[i + 1]++;
+            n->values[i + m->collumns]++;
+            n->values[i + m->collumns + 1]++;
+            n->values[i - m->collumns]++;
+            n->values[i - m->collumns + 1]++;
+        }
+    }
+
+    for (int i = 2 * m->collumns - 1; i < m->rows * m->collumns - 1; i += m->collumns) //right collumn
+    {
+        if (m->values[i] == 1)
+        {
+            n->values[i - 1]++;
+            n->values[i + m->collumns]++;
+            n->values[i + m->collumns - 1]++;
+            n->values[i - m->collumns]++;
+            n->values[i - m->collumns - 1]++;
+
+        }
+    }
+
+    for (int i = 1; i < m->rows - 1; i++)
+    {
+        for (int j = 1; j < m->collumns - 1; j++)
+        {
+            if (m->values[(i * m->collumns) + j] == 1)
+            {
+                n->values[(i * m->collumns) + j - 1]++;
+                n->values[(i * m->collumns) + j + 1]++;
+                n->values[(i * m->collumns) + j - m->collumns]++;
+                n->values[(i * m->collumns) + j - m->collumns + 1]++;
+                n->values[(i * m->collumns) + j - m->collumns - 1]++;
+                n->values[(i * m->collumns) + j + m->collumns]++;
+                n->values[(i * m->collumns) + j + m->collumns + 1]++;
+                n->values[(i * m->collumns) + j + m->collumns - 1]++;
+            }
+        }
+    }
+
+    return 0;
 }
