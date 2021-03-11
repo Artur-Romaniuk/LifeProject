@@ -37,9 +37,9 @@ matrix_t* Load_Matrix(FILE* input){
 void Write_Matrix(FILE* output, matrix_t* m){
 fprintf(output,"%d %d\n", m->rows,m->collumns);
 for(int i = 0; i < m->rows; i++){
-    for(int j = 0; j < m->collumns; j++)
-    fprintf(output,"%d ", m->values[i * m->rows + m->collumns]);
-    fprintf(output,"\n");
+    for(int j = 0; j < m->collumns - 1; j++)
+    fprintf(output,"%d ", m->values[i * m->rows + j]);
+    fprintf(output,"%d\n", m->values[i * m->rows + m->collumns]);
 }
 }
 
@@ -52,4 +52,11 @@ int Display_Matrix(matrix_t* m)
         printf("\n");
     }
     return 0;
+}
+
+void Write_Matrix_to_PBM(char* filename, matrix_t* m){
+    FILE* out = fopen(filename,"w");
+
+    fprintf(out,"P1\n");
+    Write_Matrix(out,m);
 }
