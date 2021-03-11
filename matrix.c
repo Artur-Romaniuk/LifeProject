@@ -19,28 +19,28 @@ matrix_t* Make_Matrix(int rows, int collumns)
     return matrix;
 }
 
-matrix_t* Load_Matrix(FILE* input){
-  matrix_t* m;
-  int size,a,b;
+matrix_t* Load_Matrix(FILE* input) {
+    matrix_t* m;
+    int size, a, b;
 
-  fscanf(input,"%d %d",&a,&b);
-  m = Make_Matrix(a,b);
-  size = a * b;
+    fscanf(input, "%d %d", &a, &b);
+    m = Make_Matrix(a, b);
+    size = a * b;
 
-  for (int i = 0; i < size; i++)
-    if(fscanf(input, "%d", &m->values[i]) != 1)
-    return NULL;
+    for (int i = 0; i < size; i++)
+        if (fscanf(input, "%d", &m->values[i]) != 1)
+            return NULL;
 
-  return m;
+    return m;
 }
 
-void Write_Matrix(FILE* output, matrix_t* m){
-fprintf(output,"%d %d\n", m->rows,m->collumns);
-for(int i = 0; i < m->rows; i++){
-    for(int j = 0; j < m->collumns - 1; j++)
-    fprintf(output,"%d ", m->values[i * m->rows + j]);
-    fprintf(output,"%d\n", m->values[i * m->rows + m->collumns]);
-}
+void Write_Matrix(FILE* output, matrix_t* m) {
+    fprintf(output, "%d %d\n", m->rows, m->collumns);
+    for (int i = 0; i < m->rows; i++) {
+        for (int j = 0; j < m->collumns - 1; j++)
+            fprintf(output, "%d ", m->values[i * m->rows + j]);
+        fprintf(output, "%d\n", m->values[i * m->rows + m->collumns - 1]);
+    }
 }
 
 int Display_Matrix(matrix_t* m)
@@ -51,12 +51,13 @@ int Display_Matrix(matrix_t* m)
             printf(" %d", m->values[i * m->collumns + j]);
         printf("\n");
     }
+    printf("-------------------------\n");
     return 0;
 }
 
-void Write_Matrix_to_PBM(char* filename, matrix_t* m){
-    FILE* out = fopen(filename,"w");
+void Write_Matrix_to_PBM(char* filename, matrix_t* m) {
+    FILE* out = fopen(filename, "w");
 
-    fprintf(out,"P1\n");
-    Write_Matrix(out,m);
+    fprintf(out, "P1\n");
+    Write_Matrix(out, m);
 }
