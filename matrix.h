@@ -13,6 +13,7 @@ typedef struct
 
 matrix_t* Make_Matrix(int rows, int collumns);
 matrix_t* Load_Matrix(FILE* input);  //Czyta z pliku input i zapisuje do macierzy m
+void Clear_Matrix(matrix_t* m);
 void Write_Matrix(FILE* output, matrix_t* m);
 void Write_Matrix_to_PBM(char* filename, matrix_t* m);
 int Display_Matrix(matrix_t* m);

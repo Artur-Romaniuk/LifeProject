@@ -1,14 +1,8 @@
 #include "gameLogic.h"
 
-void zerowanie(matrix_t* m){
-    int size = m->rows * m->collumns;
-    for(int i=0;i<size;i++)
-    m->values[i] = 0;
-}
-
 int Neighbour_counter(matrix_t* m, matrix_t* n)
 {
-    zerowanie(n);
+    Clear_Matrix(n);
     if (m->values[0] == 1) //upper left corner check
     {
         n->values[1]++;
@@ -107,8 +101,8 @@ int Rule_applier(matrix_t* m, matrix_t* n) {
 /*
 ** 0 - dead
 ** 1 - alive
-** 2 - going to die
-** 3 - going to alive
+** 2 - died
+** 3 - born
 */
   int size = m->collumns * m->rows;
   int *map = m->values;
