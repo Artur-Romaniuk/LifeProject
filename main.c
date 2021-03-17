@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     matrix_t* N_CS_Matrix = Make_Matrix(CS_Matrix->rows, CS_Matrix->collumns); //Neighbour curren state matrix
 
     char buf[64];
-
+    system("rm out/*");
     if (CS_Matrix == NULL || N_CS_Matrix == NULL)
         return 1;
     for (int i = 1;i <= N;i++) {
@@ -26,7 +26,6 @@ int main(int argc, char** argv)
         Write_Matrix_to_PBM(buf, CS_Matrix);
         // Display_Matrix(CS_Matrix);
     }
-
     //sprintf(buf, "./makegif %d", N);
     //system(buf);
     system("mkdir out/tmp");
@@ -34,7 +33,6 @@ int main(int argc, char** argv)
         sprintf(buf, "ppmtogif -quiet out/gen%d.pbm > out/tmp/gen%d.gif", i, i);
         system(buf);
     }
-
     for (int i = 1;i <= N;i++) {
         sprintf(buf, "gifsicle -b out/tmp/gen1.gif --append out/tmp/gen%d.gif", i);
         system(buf);
