@@ -11,13 +11,11 @@ typedef struct
     int* values;
 } matrix_t;
 
-matrix_t* Make_Matrix(int rows, int collumns);
-matrix_t* Load_Matrix(FILE* input);  //Czyta z pliku input i zapisuje do macierzy m
-void Clear_Matrix(matrix_t* m);
-void Write_Matrix(FILE* output, matrix_t* m);
-void Write_Matrix_to_PBM(char* filename, matrix_t* m);
-int Display_Matrix(matrix_t* m);
-int Neighbour_counter(matrix_t* m, matrix_t* nm);
-int Rule_applier(matrix_t* m, matrix_t* nm);
+matrix_t* Make_Matrix(int rows, int collumns);          //make new, empty matrix
+matrix_t* Load_Matrix(FILE* input);                     //Read from input file and save to a new matrix
+void Clear_Matrix(matrix_t* m);                         //set all values in a matrix to 0
+void Write_Matrix_to_PBM(char* filename, matrix_t* m);  //save to PBM file          
 
+void Write_Matrix(FILE* output, matrix_t* m);           //NOT USED IN FINAL, only for testing
+int Display_Matrix(matrix_t* m);                        //NOT USED IN FINAL, only for testing
 #endif
