@@ -1,13 +1,13 @@
-a.out:  matrix.o ganeLogic.o
-	$(CC) -o game main.c matrix.o gameLogic.o
+a.out:  matrix.o gameLogic.o
+	$(CC) -o game main.c matrix.o gameLogic.o -ggdb
 
-matrix.o: matrix.h
-	$(CC) -c matrix.c
+matrix.o: matrix.h  matrix.c
+	$(CC) -c matrix.c matrix.h -ggdb
 
-ganeLogic.o: gameLogic.h
-	$(CC) -c gameLogic.c
+ganeLogic.o: gameLogic.h gameLogic.c
+	$(CC) -c gameLogic.c gameLogic.h -ggdb
 
 .PHONY: clean
 
 clean:
-	-rm *.o
+	-rm *.o *.gch
