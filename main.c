@@ -13,18 +13,17 @@ int main(int argc, char** argv)
     FILE* in = argc > 2 ? fopen(argv[2], "r") : stdin;  //file to read from (defualt stdin)
 
     matrix_t* CS_Matrix = Load_Matrix(in);  //Current state matrix
-    matrix_t* N_CS_Matrix = Make_Matrix(CS_Matrix->rows, CS_Matrix->collumns); //Neighbour curren state matrix
+    matrix_t* N_CS_Matrix = Make_Matrix(CS_Matrix->rows, CS_Matrix->collumns); //Neighbour current state matrix
 
     char buf[32];
 
-    if (CS_Matrix == NULL || N_CS_Matrix == NULL)
+    if (CS_Matrix == NULL || N_CS_Matrix == NULL) //check if matrixes were created properly
         return 1;
     for (int i = 0;i < N;i++) {
-        Neighbour_counter(CS_Matrix, N_CS_Matrix);
-        Rule_applier(CS_Matrix, N_CS_Matrix);
+        Neighbour_counter(CS_Matrix, N_CS_Matrix);  //calculate neighbours for every cell in a matrix at once
+        Rule_applier(CS_Matrix, N_CS_Matrix);       //apply rules of the game of life using CS and N_CS matrixes
         sprintf(buf, "gen%d.pbm", i);
-        Write_Matrix_to_PBM(buf, CS_Matrix);
-        // Display_Matrix(CS_Matrix);
+        Write_Matrix_to_PBM(buf, CS_Matrix);        //save to file
     }
 
     return 0;

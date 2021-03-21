@@ -76,7 +76,7 @@ int Neighbour_counter(matrix_t* m, matrix_t* n)
         }
     }
 
-    for (int i = 1; i < m->rows - 1; i++)
+    for (int i = 1; i < m->rows - 1; i++)   //rest
     {
         for (int j = 1; j < m->collumns - 1; j++)
         {
